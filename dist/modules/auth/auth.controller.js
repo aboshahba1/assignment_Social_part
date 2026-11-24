@@ -1,0 +1,20 @@
+import { Router } from "express";
+import AS from "./auth.service.js";
+import { authentication } from "../../common/middleware/authentication.js";
+const authRouter = Router();
+authRouter.post("/signUp", AS.signUp);
+authRouter.post("/confirmEmail", AS.confirmEmail);
+authRouter.post("/reSendOtp", AS.reSendOtp);
+authRouter.post("/signUpWithGmail", AS.signUpWithGmail);
+authRouter.post("/signin", AS.signin);
+authRouter.get("/profile", authentication, AS.getProfile);
+authRouter.get("/shareProfile/:id", authentication, AS.shareProfile);
+authRouter.post("/refreshToken", AS.refresh_token);
+authRouter.post("/forgotPassword", AS.forgotPassword);
+authRouter.post("/resetPassword", AS.resetPassword);
+authRouter.post("/logout", AS.logout);
+authRouter.post("/logoutAll", authentication, AS.logoutAll);
+authRouter.patch("/updateProfile", authentication, AS.updateProfile);
+authRouter.patch("/updatePassword", authentication, AS.updatePassword);
+// authRouter.post("/test",AS.test)
+export default authRouter;

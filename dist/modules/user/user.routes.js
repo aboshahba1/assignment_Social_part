@@ -1,0 +1,10 @@
+import { Router } from "express";
+import { authentication } from "../../common/middleware/authentication.js";
+import US from "./user.service.js";
+const userRouter = Router();
+userRouter.post("/follow/:id", authentication, US.followUser);
+userRouter.delete("/unfollow/:id", authentication, US.unfollowUser);
+userRouter.get("/searchUsers", authentication, US.searchUsers);
+userRouter.get("/suggestUsers", authentication, US.suggestUsers);
+userRouter.patch("/privacy", authentication, US.updatePrivacy);
+export default userRouter;
